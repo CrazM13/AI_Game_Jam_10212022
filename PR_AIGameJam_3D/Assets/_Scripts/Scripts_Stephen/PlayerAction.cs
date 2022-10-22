@@ -20,7 +20,13 @@ public class PlayerAction : MonoBehaviour
                 if (hit.transform.GetComponentInChildren<Animator>() != null) 
                 {
                     hit.transform.GetComponentInChildren<Animator>().SetTrigger("Activate");
-                }
+
+                ServiceLocator.NPCManager.OnInteractionEvent(new InteractionAIEvent()
+                {
+                    eventPosition = transform.position,
+                    alertChance = 1 // Put the actual chance here
+                });
+            }
 
             }
                 
