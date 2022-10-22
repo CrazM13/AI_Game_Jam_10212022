@@ -975,7 +975,7 @@ PrefabInstance:
     - target: {fileID: 8618565276671669765, guid: 54bd9c2b4049e394296609ac3175a003,
         type: 3}
       propertyPath: playerActivateDistance
-      value: 12.42
+      value: 65.23
       objectReference: {fileID: 0}
     - target: {fileID: 8618565276671669767, guid: 54bd9c2b4049e394296609ac3175a003,
         type: 3}
