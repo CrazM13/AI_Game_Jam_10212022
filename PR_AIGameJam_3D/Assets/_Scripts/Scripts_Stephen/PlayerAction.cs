@@ -13,7 +13,7 @@ public class PlayerAction : MonoBehaviour {
 		RaycastHit hit;
 		active = Physics.Raycast(cam.position, cam.TransformDirection(Vector3.forward), out hit, playerActivateDistance);
 
-		if (Input.GetKeyDown(KeyCode.F) && active == true) {
+		if (Input.GetKeyDown(KeyCode.E) && active == true) {
 			ServiceLocator.NPCManager.OnInteractionEvent(new InteractionAIEvent() {
 				eventPosition = transform.position,
 				alertChance = alertChance // Put the actual chance here
