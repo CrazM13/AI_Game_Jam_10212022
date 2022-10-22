@@ -15,7 +15,25 @@ public class NPCManager {
 	}
 
 	public void OnInteractionEvent(InteractionAIEvent @event) {
+		foreach (NPCBase npc in registeredNPCs) {
+			npc.OnInteractionEvent(@event);
+		}
+	}
 
+	public void OnTimeChange() {
+		foreach (NPCBase npc in registeredNPCs) {
+			npc.OnScheduledMove();
+		}
+	}
+
+	public bool IsComplete() {
+		foreach (NPCBase npc in registeredNPCs) {
+			if (npc is NPCTownsfolk townsfolk) {
+				if (townsfolk.GetAlertState() != AlertStates.ALERTED) return false;
+			}
+		}
+
+		return true;
 	}
 
 }

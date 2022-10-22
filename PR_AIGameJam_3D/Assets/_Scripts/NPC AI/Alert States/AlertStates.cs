@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scheduler : MonoBehaviour {
-	
-
-
+public enum AlertStates {
+	NONE,
+	QUESTIONING,
+	ALERTED
 }
