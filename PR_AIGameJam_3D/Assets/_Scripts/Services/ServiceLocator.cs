@@ -5,6 +5,8 @@ using UnityEngine;
 public class ServiceLocator : MonoBehaviour {
 	// Readonly services
 	public static SceneTransition @SceneManager { get; set; }
+	public static NPCManager @NPCManager { get; set; }
+	public static POIManager @POIManager { get; set; }
 
 	// Singleton
 	private static ServiceLocator instance;
@@ -20,6 +22,8 @@ public class ServiceLocator : MonoBehaviour {
 
 	private void LocateServices() {
 		@SceneManager = FindObjectOfType<SceneTransition>();
+		@NPCManager = new NPCManager();
+		@POIManager = new POIManager();
 	}
 
 	private void OnDestroy() {
