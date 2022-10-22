@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public abstract class NPCBase : MonoBehaviour {
 
 	[SerializeField] protected NPCSettings settings;
+	[SerializeField] private AlertDisplayManager alertDisplay;
 
 	private float movementSpeedModifier = 1;
 
@@ -47,8 +48,10 @@ public abstract class NPCBase : MonoBehaviour {
 
 			if (Random.value < chance) {
 				alertState = AlertStates.ALERTED;
+				alertDisplay.StartAlert();
 			} else {
 				alertState = AlertStates.QUESTIONING;
+				alertDisplay.StartQuestioning();
 			}
 
 			AfterInteractionEvent(@event);
