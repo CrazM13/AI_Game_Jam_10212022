@@ -33,7 +33,7 @@ public class NPCTownsfolk : NPCBase {
 		AlertStates currentState = GetAlertState();
 
 		bool canCalmDown = currentState == AlertStates.QUESTIONING || currentState == AlertStates.ALERTED;
-		if (!IsPathing && canCalmDown) {
+		if (canCalmDown) {
 			if (ghosthunterID != null) {
 				NPCBase ghosthunter = ServiceLocator.NPCManager.Find(ghosthunterID);
 
@@ -55,6 +55,13 @@ public class NPCTownsfolk : NPCBase {
 					MoveToNewPOI();
 				}
 			}
+		} else if (currentState == AlertStates.DEAD) {
+			Transform player = ServiceLocator.Player?.transform;
+			if (player) {
+				float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+				if (distanceToPlayer > settings.distanceToStop) PathTo(player.position);
+			}
+			
 		}
 	}
 

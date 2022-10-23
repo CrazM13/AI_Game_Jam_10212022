@@ -17,3 +17,5 @@ MonoBehaviour:
   maxNoticeDistance: 20
   minNoticeChance: 1
   questioningChanceIncrease: 0.1
+  calmRate: 0.1
+  canDie: 1

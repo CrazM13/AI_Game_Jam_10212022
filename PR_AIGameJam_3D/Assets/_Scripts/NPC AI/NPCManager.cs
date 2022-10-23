@@ -29,7 +29,7 @@ public class NPCManager {
 	public bool IsComplete() {
 		foreach (NPCBase npc in registeredNPCs.Values) {
 			if (npc is NPCTownsfolk townsfolk) {
-				if (townsfolk.GetAlertState() != AlertStates.ALERTED) return false;
+				if (townsfolk.GetAlertState() != AlertStates.DEAD) return false;
 			}
 		}
 

@@ -7,6 +7,8 @@ public abstract class NPCBase : MonoBehaviour {
 
 	[SerializeField] protected NPCSettings settings;
 	[SerializeField] private AlertDisplayManager alertDisplay;
+	[SerializeField] private Transform livingModelTransform;
+	[SerializeField] private Transform ghostModelTransform;
 
 	private float movementSpeedModifier = 1;
 	public string ID { get; private set; }
@@ -14,6 +16,7 @@ public abstract class NPCBase : MonoBehaviour {
 	void Start() {
 		ID = System.Guid.NewGuid().ToString();
 		ServiceLocator.NPCManager.RegisterNPC(this);
+		if (ghostModelTransform) ghostModelTransform.gameObject.SetActive(false);
 	}
 
 	void Update() {
@@ -52,12 +55,18 @@ public abstract class NPCBase : MonoBehaviour {
 	}
 
 	public void OnInteractionEvent(InteractionAIEvent @event) {
+		if (alertState == AlertStates.DEAD) return;
+
 		if (Vector3.Distance(@event.eventPosition, transform.position) < settings.maxNoticeDistance) {
 			float chance = Mathf.Max(@event.alertChance, settings.minNoticeChance);
 			if (alertState == AlertStates.QUESTIONING) chance += settings.questioningChanceIncrease;
 
 			if (alertState == AlertStates.ALERTED) {
-				// TODO
+				if (settings.canDie && Random.value < chance) {
+					alertState = AlertStates.DEAD;
+					alertDisplay.HideAll();
+					LeaveBody();
+				}
 			} else {
 				if (Random.value < chance) {
 					alertState = AlertStates.ALERTED;
@@ -90,7 +99,7 @@ public abstract class NPCBase : MonoBehaviour {
 			else walkTo = null;
 		}
 	}
-	
+
 	private void UpdateMovement() {
 		UpdatePath();
 		if (walkTo.HasValue) {
@@ -116,6 +125,14 @@ public abstract class NPCBase : MonoBehaviour {
 		this.movementSpeedModifier = speedModifier;
 	}
 
+	#endregion
+
+	#region Visuals
+	private void LeaveBody() {
+		livingModelTransform.SetParent(null);
+		Destroy(livingModelTransform.gameObject, 10);
+		if (ghostModelTransform) ghostModelTransform.gameObject.SetActive(true);
+	}
 	#endregion
 
 }

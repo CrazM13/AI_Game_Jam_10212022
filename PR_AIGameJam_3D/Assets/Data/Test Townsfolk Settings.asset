@@ -18,3 +18,4 @@ MonoBehaviour:
   minNoticeChance: 0.3
   questioningChanceIncrease: 0.1
   calmRate: 0.3
+  canDie: 1

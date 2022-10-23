@@ -5,5 +5,6 @@ using UnityEngine;
 public enum AlertStates {
 	NONE,
 	QUESTIONING,
-	ALERTED
+	ALERTED,
+	DEAD
 }
