@@ -7,6 +7,7 @@ public class ServiceLocator : MonoBehaviour {
 	public static SceneTransition @SceneManager { get; set; }
 	public static NPCManager @NPCManager { get; set; }
 	public static POIManager @POIManager { get; set; }
+	public static PlayerMovement Player { get; set; }
 
 	// Singleton
 	private static ServiceLocator instance;
@@ -24,9 +25,15 @@ public class ServiceLocator : MonoBehaviour {
 		@SceneManager = FindObjectOfType<SceneTransition>();
 		@NPCManager = new NPCManager();
 		@POIManager = new POIManager();
+		Player = FindObjectOfType<PlayerMovement>();
 	}
 
 	private void OnDestroy() {
-		@SceneManager = null;
+		if (instance == this) {
+			@SceneManager = null;
+			@NPCManager = null;
+			@POIManager = null;
+			Player = null;
+		}
 	}
 }
