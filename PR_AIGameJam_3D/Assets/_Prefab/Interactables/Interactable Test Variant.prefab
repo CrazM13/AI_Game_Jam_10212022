@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 8425700954608711304, guid: 0ad86b81bea77e54c84e20d484900059,
         type: 3}
       propertyPath: m_Name
-      value: Interactable
+      value: Interactable Test Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8425700954608711309, guid: 0ad86b81bea77e54c84e20d484900059,
         type: 3}
@@ -173,6 +173,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8828949850693488327, guid: 0ad86b81bea77e54c84e20d484900059,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 630850850}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ad86b81bea77e54c84e20d484900059, type: 3}
 --- !u!4 &8618565277218640904 stripped
