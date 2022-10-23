@@ -46,13 +46,13 @@ public class NPCTownsfolk : NPCBase {
 						ghosthunterID = null;
 						MoveToNewPOI();
 					}
-				} else MoveToNewPOI();
+				} else if (!IsPathing) MoveToNewPOI();
 			} else {
 				NPCBase ghosthunter = ServiceLocator.NPCManager.FindNearest(transform.position, (npc) => npc is NPCGhosthunter, settings.maxNoticeDistance);
 				if (ghosthunter) {
 					ghosthunterID = ghosthunter.ID;
 				} else {
-					MoveToNewPOI();
+					if (!IsPathing) MoveToNewPOI();
 				}
 			}
 		} else if (currentState == AlertStates.DEAD) {
