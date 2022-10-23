@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServiceLocator : MonoBehaviour {
 	// Readonly services
 	public static SceneTransition @SceneManager { get; set; }
+	public static AudioManager @AudioManager { get; set; }
 	public static NPCManager @NPCManager { get; set; }
 	public static POIManager @POIManager { get; set; }
 	public static PlayerMovement Player { get; set; }
@@ -23,6 +24,7 @@ public class ServiceLocator : MonoBehaviour {
 
 	private void LocateServices() {
 		@SceneManager = FindObjectOfType<SceneTransition>();
+		@AudioManager = FindObjectOfType<AudioManager>();
 		@NPCManager = new NPCManager();
 		@POIManager = new POIManager();
 		Player = FindObjectOfType<PlayerMovement>();
@@ -31,6 +33,7 @@ public class ServiceLocator : MonoBehaviour {
 	private void OnDestroy() {
 		if (instance == this) {
 			@SceneManager = null;
+			@AudioManager = null;
 			@NPCManager = null;
 			@POIManager = null;
 			Player = null;

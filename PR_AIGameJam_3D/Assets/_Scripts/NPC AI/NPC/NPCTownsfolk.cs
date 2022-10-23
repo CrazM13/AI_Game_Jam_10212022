@@ -69,9 +69,14 @@ public class NPCTownsfolk : NPCBase {
 		switch (GetAlertState()) {
 			case AlertStates.QUESTIONING:
 				SetSpeedModifier(1.1f);
+				ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Questioning");
 				break;
 			case AlertStates.ALERTED:
 				SetSpeedModifier(2f);
+				ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Alerted");
+				break;
+			case AlertStates.DEAD:
+				ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Dead");
 				break;
 		}
 		MoveToNewPOI();
@@ -93,6 +98,7 @@ public class NPCTownsfolk : NPCBase {
 					SetAlertState(AlertStates.NONE);
 					ghosthunterID = null;
 					MoveToNewPOI();
+					ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Idle");
 					break;
 				case AlertStates.ALERTED:
 					SetAlertState(AlertStates.QUESTIONING);
