@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5752f95fef530b44b9513f7a648d4279, type: 3}
-  m_Name: Test Townsfolk Settings
+  m_Name: Test Ghosthunter Settings
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  distanceToStop: 1
+  distanceToStop: 0.25
   maxNoticeDistance: 5
   minNoticeChance: 0.3
   questioningChanceIncrease: 0.1

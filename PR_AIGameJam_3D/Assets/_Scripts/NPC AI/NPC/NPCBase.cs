@@ -9,8 +9,10 @@ public abstract class NPCBase : MonoBehaviour {
 	[SerializeField] private AlertDisplayManager alertDisplay;
 
 	private float movementSpeedModifier = 1;
+	public string ID { get; private set; }
 
 	void Start() {
+		ID = System.Guid.NewGuid().ToString();
 		ServiceLocator.NPCManager.RegisterNPC(this);
 	}
 
@@ -21,12 +23,20 @@ public abstract class NPCBase : MonoBehaviour {
 
 	public abstract void OnScheduledMove();
 
+	public NPCSettings GetSettings() => settings;
+
 	#region Behaviour
 
 	protected abstract void OnNPCBehaviour();
 
 	private AlertStates alertState = AlertStates.NONE;
 	public AlertStates GetAlertState() => alertState;
+	public void SetAlertState(AlertStates state) {
+		alertState = state;
+		if (alertState == AlertStates.QUESTIONING) alertDisplay.StartQuestioning();
+		else if (alertState == AlertStates.ALERTED) alertDisplay.StartAlert();
+		else alertDisplay.HideAll();
+	}
 
 	protected bool InteractWithNPC(NPCBase npc) {
 		if (alertState == AlertStates.ALERTED) {
@@ -46,12 +56,16 @@ public abstract class NPCBase : MonoBehaviour {
 			float chance = Mathf.Max(@event.alertChance, settings.minNoticeChance);
 			if (alertState == AlertStates.QUESTIONING) chance += settings.questioningChanceIncrease;
 
-			if (Random.value < chance) {
-				alertState = AlertStates.ALERTED;
-				alertDisplay.StartAlert();
+			if (alertState == AlertStates.ALERTED) {
+				// TODO
 			} else {
-				alertState = AlertStates.QUESTIONING;
-				alertDisplay.StartQuestioning();
+				if (Random.value < chance) {
+					alertState = AlertStates.ALERTED;
+					alertDisplay.StartAlert();
+				} else {
+					alertState = AlertStates.QUESTIONING;
+					alertDisplay.StartQuestioning();
+				}
 			}
 
 			AfterInteractionEvent(@event);
