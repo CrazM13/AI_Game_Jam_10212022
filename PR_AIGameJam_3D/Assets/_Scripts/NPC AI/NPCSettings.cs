@@ -10,5 +10,7 @@ public class NPCSettings : ScriptableObject {
 	public float maxNoticeDistance = 5;
 	public float minNoticeChance = 0.3f;
 	public float questioningChanceIncrease = 0.1f;
+	public float calmRate = 0.1f;
+	public bool canDie = false;
 
 }

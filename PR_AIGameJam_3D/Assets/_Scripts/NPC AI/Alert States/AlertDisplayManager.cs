@@ -18,4 +18,9 @@ public class AlertDisplayManager : MonoBehaviour {
 		alert.Display();
 	}
 
+	public void HideAll() {
+		questioning.Hide();
+		alert.Hide();
+	}
+
 }

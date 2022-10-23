@@ -46,6 +46,7 @@ public class SceneTransition : MonoBehaviour {
 	}
 
 	public void LoadSceneByName(string changeToScene) {
+		if (timeUntilFinished > 0) return;
 		Time.timeScale = 0;
 		timeUntilFinished = animationTime;
 		this.changeToScene = changeToScene;
