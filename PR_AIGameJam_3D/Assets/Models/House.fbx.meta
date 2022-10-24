@@ -36,6 +36,72 @@ ModelImporter:
   - first:
       74: 6914838564875857464
     second: house|Plane.008Action
+  - first:
+      74: 6655086895980811714
+    second: house_doorframe|CubeAction
+  - first:
+      74: -4184468170325882206
+    second: house_doorframe|doorAction
+  - first:
+      74: 843823561173697227
+    second: house_doorframe|doorAction.002
+  - first:
+      74: -118921912756784431
+    second: house_doorframe|Plane.001Action
+  - first:
+      74: -3845403690619079234
+    second: house_doorframe|Plane.001Action.001
+  - first:
+      74: 8963011392249937239
+    second: house_doorframe|Plane.001Action.002
+  - first:
+      74: 2198174901585421037
+    second: house_doorframe|Plane.002Action
+  - first:
+      74: -1055111066419006262
+    second: house_doorframe|Plane.002Action.001
+  - first:
+      74: -533653126588642455
+    second: house_doorframe|Plane.002Action.002
+  - first:
+      74: 6933213655464005213
+    second: house_doorframe|Plane.005Action
+  - first:
+      74: 6817773512805443008
+    second: house_doorframe|Plane.008Action
+  - first:
+      74: -2377188551136994593
+    second: house_door|CubeAction
+  - first:
+      74: 3877127342444640337
+    second: house_door|doorAction
+  - first:
+      74: -5886755767951198158
+    second: house_door|doorAction.002
+  - first:
+      74: -1121926370040229043
+    second: house_door|Plane.001Action
+  - first:
+      74: 3262958678164992569
+    second: house_door|Plane.001Action.001
+  - first:
+      74: 5913685466301582309
+    second: house_door|Plane.001Action.002
+  - first:
+      74: -3250652557839994564
+    second: house_door|Plane.002Action
+  - first:
+      74: -8786109782074283195
+    second: house_door|Plane.002Action.001
+  - first:
+      74: -7516414470789569606
+    second: house_door|Plane.002Action.002
+  - first:
+      74: 8706896754232783411
+    second: house_door|Plane.005Action
+  - first:
+      74: 5935139865453146537
+    second: house_door|Plane.008Action
   externalObjects: {}
   materials:
     materialImportMode: 2
