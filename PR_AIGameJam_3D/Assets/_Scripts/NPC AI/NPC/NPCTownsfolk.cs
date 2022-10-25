@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCTownsfolk : NPCBase {
 
 	private string ghosthunterID = null;
+	private int groupID = 0;
 
 	public override void OnScheduledMove() {
 		AlertStates currentState = GetAlertState();
@@ -56,12 +57,18 @@ public class NPCTownsfolk : NPCBase {
 				}
 			}
 		} else if (currentState == AlertStates.DEAD) {
-			Transform player = ServiceLocator.Player?.transform;
-			if (player) {
-				float distanceToPlayer = Vector3.Distance(player.position, transform.position);
-				if (distanceToPlayer > settings.distanceToStop) PathTo(player.position);
-			}
-			
+			ChasePlayer();
+		}
+	}
+
+	private void ChasePlayer() {
+		Transform player = ServiceLocator.Player.transform;
+
+		if (player) {
+			Vector3 playerPosition = ServiceLocator.POIManager.GetFollowPOI(player, groupID, 2);
+
+			float distanceToPlayer = Vector3.Distance(playerPosition, transform.position);
+			if (distanceToPlayer > settings.distanceToStop) PathTo(playerPosition);
 		}
 	}
 
@@ -107,4 +114,7 @@ public class NPCTownsfolk : NPCBase {
 		}
 	}
 
+	protected override void OnInit() {
+		groupID = ServiceLocator.POIManager.GetGroupID();
+	}
 }

@@ -17,6 +17,8 @@ public abstract class NPCBase : MonoBehaviour {
 		ID = System.Guid.NewGuid().ToString();
 		ServiceLocator.NPCManager.RegisterNPC(this);
 		if (ghostModelTransform) ghostModelTransform.gameObject.SetActive(false);
+
+		OnInit();
 	}
 
 	void Update() {
@@ -30,6 +32,7 @@ public abstract class NPCBase : MonoBehaviour {
 
 	#region Behaviour
 
+	protected abstract void OnInit();
 	protected abstract void OnNPCBehaviour();
 
 	private AlertStates alertState = AlertStates.NONE;
@@ -118,7 +121,10 @@ public abstract class NPCBase : MonoBehaviour {
 	}
 
 	public void PathTo(Vector3 position) {
-		targetPos = position;
+		NavMesh.SamplePosition(position, out NavMeshHit hit, 1, -1);
+		if (hit.hit) {
+			targetPos = hit.position;
+		}
 	}
 
 	public void SetSpeedModifier(float speedModifier) {

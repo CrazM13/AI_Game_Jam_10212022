@@ -27,6 +27,8 @@ public class NPCManager {
 	}
 
 	public bool IsComplete() {
+		if (registeredNPCs.Count <= 0) return false;
+
 		foreach (NPCBase npc in registeredNPCs.Values) {
 			if (npc is NPCTownsfolk townsfolk) {
 				if (townsfolk.GetAlertState() != AlertStates.DEAD) return false;

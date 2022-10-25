@@ -24,4 +24,6 @@ public class NPCGhosthunter : NPCBase {
 			}
 		}
 	}
+
+	protected override void OnInit() { /*MT*/ }
 }
