@@ -11,6 +11,7 @@ public class SceneTransition : MonoBehaviour {
 	[Header("Settings")]
 	[SerializeField] private float animationTime;
 
+	private float delayTime;
 	private float timeUntilFinished;
 	private string changeToScene = "";
 
@@ -23,42 +24,58 @@ public class SceneTransition : MonoBehaviour {
 
 	void Update() {
 		if (timeUntilFinished > 0) {
-			timeUntilFinished -= Time.unscaledDeltaTime;
 
-			if (string.IsNullOrEmpty(changeToScene)) {
-				canvas.alpha = Mathf.Lerp(0, 1, timeUntilFinished / (animationTime - 0.1f));
-			} else {
-				canvas.alpha = Mathf.Lerp(1, 0, timeUntilFinished / (animationTime - 0.1f));
-			}
-
-			if (timeUntilFinished <= 0) {
-				Time.timeScale = 1;
-				if (!string.IsNullOrEmpty(changeToScene)) {
-					SceneManager.LoadScene(changeToScene);
-					timeUntilFinished = animationTime;
-					changeToScene = "";
-				} else {
-					canvas.blocksRaycasts = false;
+			if (delayTime > 0) {
+				delayTime -= Time.unscaledDeltaTime;
+				if (delayTime <= 0) {
+					canvas.blocksRaycasts = true;
 					canvas.alpha = 0;
+					Time.timeScale = 0;
+				}
+			} else {
+
+				timeUntilFinished -= Time.unscaledDeltaTime;
+
+				if (string.IsNullOrEmpty(changeToScene)) {
+					canvas.alpha = Mathf.Lerp(0, 1, timeUntilFinished / (animationTime - 0.1f));
+				} else {
+					canvas.alpha = Mathf.Lerp(1, 0, timeUntilFinished / (animationTime - 0.1f));
+				}
+
+				if (timeUntilFinished <= 0) {
+					Time.timeScale = 1;
+					if (!string.IsNullOrEmpty(changeToScene)) {
+						SceneManager.LoadScene(changeToScene);
+						timeUntilFinished = animationTime;
+						changeToScene = "";
+					} else {
+						canvas.blocksRaycasts = false;
+						canvas.alpha = 0;
+					}
 				}
 			}
 		}
 	}
 
-	public void LoadSceneByName(string changeToScene) {
+	public void LoadSceneByName(string changeToScene, float delay = 0) {
 		if (timeUntilFinished > 0) return;
-		Time.timeScale = 0;
 		timeUntilFinished = animationTime;
+		delayTime = delay;
 		this.changeToScene = changeToScene;
-		canvas.blocksRaycasts = true;
-		canvas.alpha = 0;
+		Time.timeScale = 0.3f;
+
+		if (delay <= 0) {
+			canvas.blocksRaycasts = true;
+			canvas.alpha = 0;
+			Time.timeScale = 0;
+		}
 	}
 
-	public static void LoadScene(string changeToScene) {
+	public static void LoadScene(string changeToScene, float delay = 0) {
 		if (!ServiceLocator.SceneManager) {
 			Debug.LogError("No Scene Transition Loaded!");
 		} else {
-			ServiceLocator.SceneManager.LoadSceneByName(changeToScene);
+			ServiceLocator.SceneManager.LoadSceneByName(changeToScene, delay);
 		}
 	}
 

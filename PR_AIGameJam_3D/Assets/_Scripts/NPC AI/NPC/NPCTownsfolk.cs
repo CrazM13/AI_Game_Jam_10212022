@@ -84,6 +84,9 @@ public class NPCTownsfolk : NPCBase {
 				break;
 			case AlertStates.DEAD:
 				ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Dead");
+				if (ServiceLocator.NPCManager.IsComplete()) {
+					ServiceLocator.SceneManager.LoadSceneByName("Win Scene", 2f);
+				}
 				break;
 		}
 		MoveToNewPOI();

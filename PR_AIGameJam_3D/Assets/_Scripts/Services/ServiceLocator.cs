@@ -9,6 +9,7 @@ public class ServiceLocator : MonoBehaviour {
 	public static NPCManager @NPCManager { get; set; }
 	public static POIManager @POIManager { get; set; }
 	public static PlayerMovement Player { get; set; }
+	public static CooldownManager @CooldownManager { get; set; }
 
 	// Singleton
 	private static ServiceLocator instance;
@@ -28,6 +29,7 @@ public class ServiceLocator : MonoBehaviour {
 		@NPCManager = new NPCManager();
 		@POIManager = new POIManager();
 		Player = FindObjectOfType<PlayerMovement>();
+		@CooldownManager = FindObjectOfType<CooldownManager>();
 	}
 
 	private void OnDestroy() {
@@ -37,6 +39,7 @@ public class ServiceLocator : MonoBehaviour {
 			@NPCManager = null;
 			@POIManager = null;
 			Player = null;
+			@CooldownManager = null;
 		}
 	}
 }

@@ -12,13 +12,23 @@ public class Interactable : MonoBehaviour {
 	[SerializeField] private Animator animator;
 	[SerializeField] private SelectionEffect selectionEffect;
 
+	public string ID { get; set; }
+
 	public bool IsReady => timeUntilReady <= 0;
+
+	private void Start() {
+		ID = System.Guid.NewGuid().ToString();
+
+		ServiceLocator.CooldownManager.AddEffect(ID, transform.position);
+	}
 
 	void Update() {
 		if (!IsReady) {
 			timeUntilReady -= Time.deltaTime;
 			if (IsReady) selectionEffect.ShowReady(true);
 		}
+
+		ServiceLocator.CooldownManager.SetValue(ID, transform.position, timeUntilReady / cooldownDuration);
 	}
 
 	public void Interact() {

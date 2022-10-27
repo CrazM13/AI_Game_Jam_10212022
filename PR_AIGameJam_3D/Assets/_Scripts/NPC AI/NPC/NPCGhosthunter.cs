@@ -18,7 +18,7 @@ public class NPCGhosthunter : NPCBase {
 			float distanceToPlayer = Vector3.Distance(transform.position, ServiceLocator.Player.transform.position);
 			bool canSeePlayer = distanceToPlayer < settings.maxNoticeDistance;
 			if (distanceToPlayer < 1) {
-				ServiceLocator.SceneManager.LoadSceneByName("Lose Scene");
+				ServiceLocator.SceneManager.LoadSceneByName("Lose Scene", 2f);
 			} else if (canSeePlayer) {
 				PathTo(ServiceLocator.Player.transform.position);
 			}

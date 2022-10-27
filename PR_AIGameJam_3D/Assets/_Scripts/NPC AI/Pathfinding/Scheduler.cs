@@ -13,9 +13,6 @@ public class Scheduler : MonoBehaviour {
 		if (timeUntilChange <= 0) {
 			timeUntilChange = timeInterval;
 			ServiceLocator.NPCManager.OnTimeChange();
-			if (ServiceLocator.NPCManager.IsComplete()) {
-				ServiceLocator.SceneManager.LoadSceneByName("Win Scene");
-			}
 		}
 	}
 
