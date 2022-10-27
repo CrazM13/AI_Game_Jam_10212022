@@ -57,7 +57,11 @@ public class SceneTransition : MonoBehaviour {
 		}
 	}
 
-	public void LoadSceneByName(string changeToScene, float delay = 0) {
+	public void LoadSceneByName(string changeToScene) {
+		LoadSceneByName(changeToScene, 0);
+	}
+
+	public void LoadSceneByName(string changeToScene, float delay) {
 		if (timeUntilFinished > 0) return;
 		timeUntilFinished = animationTime;
 		delayTime = delay;
