@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour {
 
 	[SerializeField, Range(0, 1)] private float alertChance;
 	[SerializeField] private float cooldownDuration;
+	[SerializeField] private string interactionSound;
 
 	private float timeUntilReady = 0;
 
@@ -41,6 +42,11 @@ public class Interactable : MonoBehaviour {
 
 		timeUntilReady = cooldownDuration;
 		selectionEffect.ShowReady(false);
+
+		if (ServiceLocator.SpookyManager) ServiceLocator.SpookyManager.AddSpook();
+		if (!string.IsNullOrEmpty(interactionSound)) {
+			ServiceLocator.AudioManager.PlayLocal(transform.position, "SoundFX", interactionSound);
+		}
 
 		if (animator) animator.SetTrigger("Activate");
 	}

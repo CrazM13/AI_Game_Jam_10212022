@@ -10,6 +10,7 @@ public class ServiceLocator : MonoBehaviour {
 	public static POIManager @POIManager { get; set; }
 	public static PlayerMovement Player { get; set; }
 	public static CooldownManager @CooldownManager { get; set; }
+	public static SpookyManager @SpookyManager { get; set; }
 
 	// Singleton
 	private static ServiceLocator instance;
@@ -30,6 +31,7 @@ public class ServiceLocator : MonoBehaviour {
 		@POIManager = new POIManager();
 		Player = FindObjectOfType<PlayerMovement>();
 		@CooldownManager = FindObjectOfType<CooldownManager>();
+		@SpookyManager = FindObjectOfType<SpookyManager>();
 	}
 
 	private void OnDestroy() {
@@ -40,6 +42,7 @@ public class ServiceLocator : MonoBehaviour {
 			@POIManager = null;
 			Player = null;
 			@CooldownManager = null;
+			@SpookyManager = null;
 		}
 	}
 }

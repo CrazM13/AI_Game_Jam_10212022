@@ -312,6 +312,11 @@ PrefabInstance:
       propertyPath: cooldownDuration
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 8828949850693488327, guid: 0ad86b81bea77e54c84e20d484900059,
+        type: 3}
+      propertyPath: interactionSound
+      value: SoundEffectClanking
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ad86b81bea77e54c84e20d484900059, type: 3}
 --- !u!4 &6666432654541254024 stripped

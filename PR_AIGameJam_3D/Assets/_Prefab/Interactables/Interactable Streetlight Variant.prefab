@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: cooldownDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8828949850693488327, guid: 0ad86b81bea77e54c84e20d484900059,
+        type: 3}
+      propertyPath: interactionSound
+      value: SoundEffectElectric
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ad86b81bea77e54c84e20d484900059, type: 3}
 --- !u!4 &718269005408470069 stripped

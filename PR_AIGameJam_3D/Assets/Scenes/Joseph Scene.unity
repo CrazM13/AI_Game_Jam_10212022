@@ -2304,6 +2304,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38615cd0accb644489eb3fa2d3b49633, type: 3}
+--- !u!1 &1869460062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869460064}
+  - component: {fileID: 1869460063}
+  m_Layer: 0
+  m_Name: Spooky Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1869460063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869460062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011a3139ed5ab5544ae129c488e61cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 1977562826}
+--- !u!4 &1869460064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869460062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 354.2176, y: 205.32896, z: 1.3363037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1897667421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2517,6 +2561,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5090575810438629208, guid: 38615cd0accb644489eb3fa2d3b49633,
     type: 3}
   m_PrefabInstance: {fileID: 1897667421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1977562826 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6643540169802766731, guid: 8732ee41f2b4f25428938aef1c6b7646,
+    type: 3}
+  m_PrefabInstance: {fileID: 8702070282064916833}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2037076129 stripped
 Transform:
@@ -3024,6 +3074,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6643540169802766731, guid: 8732ee41f2b4f25428938aef1c6b7646,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8702070282419846908, guid: 8732ee41f2b4f25428938aef1c6b7646,
         type: 3}
       propertyPath: m_RootOrder
