@@ -4,27 +4,16 @@ using UnityEngine;
 
 public class NPCTownsfolk : NPCBase {
 
-	private string ghosthunterID = null;
+	private NPCBase ghosthunter = null;
 	private int groupID = 0;
 
 	public override void OnScheduledMove() {
 		AlertStates currentState = GetAlertState();
 
 		bool canCalmDown = currentState == AlertStates.QUESTIONING || currentState == AlertStates.ALERTED;
-		if (canCalmDown && ghosthunterID != null) {
-
-			NPCBase ghosthunter = ServiceLocator.NPCManager.Find(ghosthunterID);
-
-			if (ghosthunter) {
-				float distanceToGhosthunter = Vector3.Distance(ghosthunter.transform.position, transform.position);
-
-				if (distanceToGhosthunter < settings.maxNoticeDistance) {
-					PathTo(ghosthunter.transform.position);
-				} else MoveToNewPOI();
-			} else MoveToNewPOI();
-
+		if (canCalmDown && ghosthunter) {
+			if (!AttemptMoveToGhosthunter()) MoveToNewPOI();
 			AttemptCalmDown(currentState, ghosthunter);
-
 		} else if (!IsPathing) {
 			MoveToNewPOI();
 		}
@@ -35,23 +24,21 @@ public class NPCTownsfolk : NPCBase {
 
 		bool canCalmDown = currentState == AlertStates.QUESTIONING || currentState == AlertStates.ALERTED;
 		if (canCalmDown) {
-			if (ghosthunterID != null) {
-				NPCBase ghosthunter = ServiceLocator.NPCManager.Find(ghosthunterID);
-
+			if (ghosthunter) {
 				if (ghosthunter) {
 					float distanceToGhosthunter = Vector3.Distance(ghosthunter.transform.position, transform.position);
 
 					if (distanceToGhosthunter < settings.maxNoticeDistance) {
 						if (distanceToGhosthunter > settings.distanceToStop) PathTo(ghosthunter.transform.position);
 					} else {
-						ghosthunterID = null;
+						ghosthunter = null;
 						MoveToNewPOI();
 					}
 				} else if (!IsPathing) MoveToNewPOI();
 			} else {
 				NPCBase ghosthunter = ServiceLocator.NPCManager.FindNearest(transform.position, (npc) => npc is NPCGhosthunter, settings.maxNoticeDistance);
 				if (ghosthunter) {
-					ghosthunterID = ghosthunter.ID;
+					this.ghosthunter = ghosthunter;
 				} else {
 					if (!IsPathing) MoveToNewPOI();
 				}
@@ -85,7 +72,7 @@ public class NPCTownsfolk : NPCBase {
 			case AlertStates.DEAD:
 				ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Dead");
 				if (ServiceLocator.NPCManager.IsComplete()) {
-					ServiceLocator.SceneManager.LoadSceneByName("Win Scene", 2f);
+					ServiceLocator.SceneManager.LoadSceneByName("Win Scene", 10f);
 				}
 				break;
 		}
@@ -106,7 +93,7 @@ public class NPCTownsfolk : NPCBase {
 			switch (currentState) {
 				case AlertStates.QUESTIONING:
 					SetAlertState(AlertStates.NONE);
-					ghosthunterID = null;
+					ghosthunter = null;
 					MoveToNewPOI();
 					ServiceLocator.AudioManager.PlayRandomLocal(transform.position, "Idle");
 					break;
@@ -119,5 +106,17 @@ public class NPCTownsfolk : NPCBase {
 
 	protected override void OnInit() {
 		groupID = ServiceLocator.POIManager.GetGroupID();
+	}
+
+	private bool AttemptMoveToGhosthunter() {
+		if (ghosthunter) {
+			Vector3 ghosthunterPos = ServiceLocator.POIManager.GetFollowPOI(ghosthunter.transform, groupID, 3);
+			float distanceToGhosthunter = Vector3.Distance(ghosthunterPos, transform.position);
+
+			if (distanceToGhosthunter < settings.maxNoticeDistance) {
+				PathTo(ghosthunterPos);
+				return true;
+			} else return false;
+		} else return false;
 	}
 }

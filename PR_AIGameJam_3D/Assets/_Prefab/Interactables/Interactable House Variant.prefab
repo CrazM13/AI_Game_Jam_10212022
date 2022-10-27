@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8425700954608711304, guid: 0ad86b81bea77e54c84e20d484900059,
         type: 3}
       propertyPath: m_Name
-      value: Interactable House
+      value: Interactable House Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8425700954608711311, guid: 0ad86b81bea77e54c84e20d484900059,
         type: 3}
@@ -147,6 +147,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 66a5f756e7983b74fa336264167dbdc9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce8b6efd595b2a74b84aae0c753c06ee, type: 2}
     - target: {fileID: -4597665433252901428, guid: 66a5f756e7983b74fa336264167dbdc9,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -172,11 +177,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -811515376248297073, guid: 66a5f756e7983b74fa336264167dbdc9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e83114e4cdb990c42beae9fe8a495e16, type: 2}
     - target: {fileID: 919132149155446097, guid: 66a5f756e7983b74fa336264167dbdc9,
         type: 3}
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 5798409822782205736, guid: 66a5f756e7983b74fa336264167dbdc9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f732ed0a2dfa2046b70964ca58783e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66a5f756e7983b74fa336264167dbdc9, type: 3}
 --- !u!1 &246591845940488126 stripped
