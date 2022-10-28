@@ -12,6 +12,7 @@ public class Interactable : MonoBehaviour {
 
 	[SerializeField] private Animator animator;
 	[SerializeField] private SelectionEffect selectionEffect;
+	[SerializeField] private SelectionEffect rangeEffect;
 
 	public string ID { get; set; }
 
@@ -26,7 +27,10 @@ public class Interactable : MonoBehaviour {
 	void Update() {
 		if (!IsReady) {
 			timeUntilReady -= Time.deltaTime;
-			if (IsReady) selectionEffect.ShowReady(true);
+			if (IsReady) {
+				selectionEffect.ShowReady(true);
+				rangeEffect.ShowReady(true);
+			}
 		}
 
 		ServiceLocator.CooldownManager.SetValue(ID, transform.position, timeUntilReady / cooldownDuration);
@@ -53,6 +57,7 @@ public class Interactable : MonoBehaviour {
 
 	public void ShowSelectionEffect(bool shouldShow) {
 		selectionEffect.Show(shouldShow);
+		rangeEffect.Show(shouldShow);
 	}
 
 }

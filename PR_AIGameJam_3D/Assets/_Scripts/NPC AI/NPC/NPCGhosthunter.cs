@@ -9,6 +9,16 @@ public class NPCGhosthunter : NPCBase {
 	}
 
 	protected override void AfterInteractionEvent(InteractionAIEvent @event) {
+
+		switch (GetAlertState()) {
+			case AlertStates.QUESTIONING:
+				SetSpeedModifier(1.1f);
+				break;
+			case AlertStates.ALERTED:
+				SetSpeedModifier(2f);
+				break;
+		}
+
 		AlertStates currentState = GetAlertState();
 		if (currentState != AlertStates.ALERTED) PathTo(@event.eventPosition);
 	}

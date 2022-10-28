@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 8828949850693488327, guid: 0ad86b81bea77e54c84e20d484900059,
         type: 3}
       propertyPath: cooldownDuration
-      value: 1.3
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 8828949850693488327, guid: 0ad86b81bea77e54c84e20d484900059,
         type: 3}
